@@ -1,0 +1,58 @@
+<table class="table" style="margin-left: 15%; width: 70%; margin-top: 5%;">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Message</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let m of feedback" style="cursor: pointer;">
+      <th scope="row">
+        <i
+          class="far fa-trash-alt"
+          style="color: rgb(223, 94, 94); cursor: pointer;"
+          (click)="delete(m?._id)"
+        ></i>
+      </th>
+      <td *ngIf="!m.notRed" (click)="openMessage(m)">{{m?.name}}</td>
+      <td *ngIf="!m.notRed" (click)="openMessage(m)">{{m?.email}}</td>
+      <td *ngIf="!m.notRed" (click)="openMessage(m)">
+        {{m?.message.slice(1,30)}}...
+      </td>
+      <td *ngIf="m.notRed" style="font-weight: bold;" (click)="openMessage(m)">
+        {{m?.name}}
+      </td>
+      <td *ngIf="m.notRed" style="font-weight: bold;" (click)="openMessage(m)">
+        {{m?.email}}
+      </td>
+      <td *ngIf="m.notRed" style="font-weight: bold;" (click)="openMessage(m)">
+        {{m?.message.slice(1,30)}}...
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div id="id01" class="modal">
+  <div class="modal-content animate">
+    <div class="imgcontainer">
+      <span
+        onclick="document.getElementById('id01').style.display='none'"
+        class="close"
+        title="Close Modal"
+        >&times;</span
+      >
+    </div>
+    <div class="container">
+      <label for="uname"><b>Name</b></label>
+      <p>
+        <b>{{hold?.name}}</b>
+      </p>
+      <label for="psw"><b>Email</b></label>
+      <p><b>{{hold?.email}}</b></p>
+      <label for="psw"><b>Message</b></label>
+      <p><b>{{hold?.message}}</b></p>
+    </div>
+  </div>
+</div>

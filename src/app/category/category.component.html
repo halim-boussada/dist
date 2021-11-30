@@ -1,0 +1,103 @@
+<div *ngIf="!updateForm">
+  <div class="mb-3" style="width: 40%;">
+    <label for="exampleFormControlInput1" class="form-label"
+      >New Category</label
+    >
+    <input
+      #name
+      type="text"
+      class="form-control"
+      id="exampleFormControlInput1"
+      placeholder="T-shirts"
+    />
+    <label for="exampleFormControlInput1" class="form-label">SubCategory</label>
+    <h4 *ngFor="let n of numbers">{{ n }}</h4>
+    <input
+      #nb
+      type="text"
+      class="form-control"
+      id="exampleFormControlInput1"
+      placeholder="V neck"
+    />
+    <br />
+    <button type="button" (click)="add(nb)" class="btn btn-secondary">+</button>
+    <br />
+    <br />
+    <center>
+      <button
+        type="button"
+        (click)="create(name.value)"
+        class="btn btn-success"
+      >
+        Add Item
+      </button>
+    </center>
+  </div>
+  <div class="container">
+    <div *ngFor="let e of localisation">
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">{{ e?.name }}</h5>
+          <select class="form-select" aria-label="Default select example">
+            <option selected>Subcategory</option>
+            <option *ngFor="let o of e.subcategory" value="{{ o }}"
+              >{{ o }}</option
+            >
+          </select>
+          <br />
+          <center>
+            <button
+              type="button"
+              class="btn btn-danger"
+              (click)="delete(e._id)"
+            >
+              <i class="far fa-trash-alt"></i>
+            </button>
+
+            <button (click)="open(e)" type="button" class="btn btn-warning">
+              <i class="fal fa-pen-square"></i>
+            </button>
+          </center>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="updateForm">
+  <div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label">Category</label>
+    <input
+      #newName
+      type="email"
+      class="form-control"
+      id="exampleFormControlInput1"
+      value="{{ this.hold.name }}"
+    />
+  </div>
+  <label for="exampleFormControlInput1" class="form-label">SubCategories</label>
+
+  <div *ngFor="let e of this.hold.subcategory; let i = index">
+    <div class="mb-3">
+      <input
+        type="email"
+        class="form-control"
+        id="exampleFormControlInput1"
+        value="{{ e }}"
+        #input
+        (change)="changeNumber(input.value, i)"
+      />
+    </div>
+  </div>
+  <center>
+    <button
+      (click)="confirm(newName.value)"
+      type="button"
+      class="btn btn-success"
+    >
+      Confirm
+    </button>
+    <button type="button" (click)="cancelUpdate()" class="btn btn-danger">
+      Cancel
+    </button>
+  </center>
+</div>

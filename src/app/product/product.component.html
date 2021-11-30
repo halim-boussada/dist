@@ -1,0 +1,189 @@
+<div>
+  <button class="btnn" (click)="doanloadFile()">
+    <i class="fa fa-download"></i> Download Products CSV
+  </button>
+
+  <div class="container1">
+    <div>
+      <label for="exampleFormControlInput1">Product Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="exampleFormControlInput1"
+        placeholder="Beautifull Dress"
+        #name
+      />
+    </div>
+    <div>
+      <label for="exampleFormControlInput1">Code</label>
+      <input
+        type="text"
+        class="form-control"
+        id="exampleFormControlInput1"
+        placeholder="EX7P"
+        #code
+      />
+    </div>
+    <div>
+      <label for="exampleFormControlInput1">Price</label>
+      <input
+        type="number"
+        #price
+        class="form-control"
+        id="exampleFormControlInput1"
+        placeholder="77$"
+      />
+    </div>
+    <div>
+      <label for="exampleFormControlInput1"
+        >Initial number of peaces in stock</label
+      >
+      <input
+        type="number"
+        #numberOnStock
+        class="form-control"
+        id="exampleFormControlInput1"
+        placeholder="102"
+      />
+    </div>
+  </div>
+  <div>
+    <div *ngFor="let image of imageUrl">
+      <img src="{{image}}" style="width: 30px; height: 30px;" />
+    </div>
+    <input
+      #logo
+      type="file"
+      accept="png/jpg"
+      class="input"
+      name="logo"
+      (change)="imgUpload($event)"
+    />
+  </div>
+  <div class="form-group">
+    <h4 *ngFor="let l of colorsList">{{ l }}</h4>
+    <label for="exampleFormControlSelect1">Select Colors</label>
+    <select
+      #c
+      class="form-control"
+      id="exampleFormControlSelect1"
+      (change)="addToColorsList(c)"
+    >
+      <option value="">pickColor</option>
+      <option
+        *ngFor="let c of colors"
+        [value]="c?.ref"
+        [ngStyle]="{backgroundColor: c?.ref }"
+      >
+      </option>
+    </select>
+  </div>
+  <div class="form-group">
+    <h4 *ngFor="let l of sizesList">{{ l }}</h4>
+    <label for="exampleFormControlSelect1">Select Sizes</label>
+    <select
+      #s
+      class="form-control"
+      id="exampleFormControlSelect1"
+      (change)="addToSizesList(s)"
+    >
+      <option *ngFor="let s of sizes">
+        {{s?.name}}
+      </option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlSelect1">Select Category</label>
+    <select
+      class="form-control"
+      id="exampleFormControlSelect1"
+      #v
+      (change)="sub(v.value)"
+    >
+      <option value="">Pick your category</option>
+      <option *ngFor="let c of categories">
+        <div>{{c?.name}}</div>
+      </option>
+    </select>
+  </div>
+  <div class="form-group" *ngIf="subcategories.length">
+    <label for="exampleFormControlSelect1">Select Subategory</label>
+    <select
+      class="form-control"
+      id="exampleFormControlSelect1"
+      #z
+      (change)="setSubCategory(z.value)"
+    >
+      <option value="">Pick your Subcategory</option>
+
+      <option *ngFor="let a of subcategories">
+        <div>{{a}}</div>
+      </option>
+    </select>
+  </div>
+  <div class="form-group"></div>
+  <div class="form-group">
+    <label for="exampleFormControlTextarea1">Example textarea</label>
+    <textarea
+      #description
+      class="form-control"
+      id="exampleFormControlTextarea1"
+      rows="3"
+    ></textarea>
+    <button
+      type="button"
+      class="btn btn-success"
+      (click)="addProduct(name.value ,description.value ,price.value ,code.value ,  v.value,numberOnStock.value )"
+    >
+      add product
+    </button>
+  </div>
+</div>
+<div class="cont">
+  <div class="form-group">
+    <label for="searchbar">Search</label>
+    <input
+      (change)="filter($event.target.value)"
+      type="email"
+      class="form-control"
+      id="searchbar"
+      aria-describedby="emailHelp"
+      placeholder="Search ..."
+    />
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlSelect1">Select Category</label>
+    <select
+      class="form-control"
+      id="exampleFormControlSelect1"
+      (change)="filtercategory($event.target.value)"
+    >
+      <option value="">Pick your category</option>
+      <option *ngFor="let c of categories">
+        <div>{{c?.name}}</div>
+      </option>
+    </select>
+  </div>
+</div>
+
+<div class="container2">
+  <div class="card" style="width: 18rem;" *ngFor="let product of products">
+    <img
+      class="card-img-top"
+      src="{{product?.image[0]}}"
+      alt="Card image cap"
+    />
+    <div class="card-body">
+      <h5 class="card-title">{{product?.name}}</h5>
+      <p class="card-text">{{product?.description}}</p>
+      <button
+        type="button"
+        class="btn btn-danger"
+        (click)="delete(product._id)"
+      >
+        Danger
+      </button>
+      <a (click)="checkProduct(product._id)">more details</a>
+    </div>
+  </div>
+</div>

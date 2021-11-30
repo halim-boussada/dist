@@ -1,0 +1,101 @@
+<button class="btnn" (click)="doanloadFile()">
+  <i class="fa fa-download"></i> Download Products CSV
+</button>
+
+<table class="table" style="margin-left: 15%; width: 70%; margin-top: 5%;">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Total</th>
+      <th scope="col">Email</th>
+      <th scope="col">Status</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let order of orders">
+      <th scope="row">1</th>
+      <td>{{order?.total}}</td>
+      <td>{{order?.email}}</td>
+      <td>{{order?.status}}</td>
+      <td>
+        <button
+          type="button"
+          class="btn btn-danger"
+          (click)="delete(order._id)"
+        >
+          delete
+        </button>
+        <button class="btn btn-primary" (click)="openMessage(order)">
+          discover
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div id="id01" class="modal">
+  <div class="modal-content animate">
+    <div class="imgcontainer">
+      <span
+        onclick="document.getElementById('id01').style.display='none'"
+        class="close"
+        title="Close Modal"
+        >&times;</span
+      >
+    </div>
+    <div class="container">
+      <div>
+        <label for="uname"><b>Total</b></label>
+        <p>
+          <b>{{hold?.total}} $</b>
+        </p>
+      </div>
+      <div>
+        <label for="psw"><b>Email</b></label>
+        <p><b>{{hold?.email}}</b></p>
+      </div>
+      <div>
+        <label for="psw"><b>Adress</b></label>
+        <p><b>{{hold?.adress}}</b></p>
+      </div>
+      <div>
+        <label for="psw"><b>status</b></label>
+
+        <p><b></b></p>
+        <select
+          #status
+          class="form-select"
+          aria-label="Default select example"
+          (change)="updateStatus(status.value)"
+        >
+          <option selected>{{hold?.status}}</option>
+          <option value="On Stock">On Stock</option>
+          <option value="Shipping">Shipping</option>
+        </select>
+      </div>
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Products</th>
+            <th scope="col">Product image</th>
+            <th scope="col">Product name</th>
+            <th scope="col">quantity</th>
+            <th scope="col">Product price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let p of hold?.products">
+            <th scope="row">1</th>
+            <td>
+              <img src="{{p?.image}}" style="width: 50px; height: 50px;" />
+            </td>
+            <td>{{p?.name}}</td>
+            <td>{{p?.quantity}}</td>
+            <td>{{p?.price}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

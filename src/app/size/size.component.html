@@ -1,0 +1,33 @@
+<div>
+  <button type="button" class="btn btn-success" (click)="addSizeForm()">
+    Add Sizes
+  </button>
+</div>
+<div class="container">
+  <div *ngFor="let s of sizes">
+    <div class="form-group">
+      <input
+        type="email"
+        class="form-control"
+        id="exampleInputEmail1"
+        value="{{s?.name}}"
+        aria-describedby="emailHelp"
+        placeholder="Enter email"
+        #n
+      />
+    </div>
+    <center>
+      <button type="button" class="btn btn-danger" (click)="delete(s._id)">
+        <i class="far fa-trash-alt"></i>
+      </button>
+
+      <button
+        (click)="confirm(s._id ,n.value )"
+        type="button"
+        class="btn btn-warning"
+      >
+        <i class="fal fa-pen-square"></i>
+      </button>
+    </center>
+  </div>
+</div>

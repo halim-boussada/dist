@@ -1,0 +1,58 @@
+<div class="container">
+  <div class="form-group">
+    <label for="exampleInputEmail1">pick color by name</label>
+    <br />
+    <input
+      #color
+      type="text"
+      class="form-control"
+      id="exampleInputEmail1"
+      aria-describedby="emailHelp"
+      placeholder="red blue pink ..."
+    />
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Or pick color by code</label>
+    <br />
+    <input
+      #code
+      type="text"
+      class="form-control"
+      id="exampleInputEmail1"
+      aria-describedby="emailHelp"
+      placeholder="#992913"
+    />
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1"> Or pick color by code</label>
+    <br />
+    <input
+      #ref
+      type="color"
+      class="form-control"
+      id="exampleInputEmail1"
+      aria-describedby="emailHelp"
+      style="height: 37px;"
+    />
+  </div>
+  <div></div>
+  <button
+    type="button"
+    class="btn btn-success"
+    (click)=" addcolor(ref.value, color.value, code.value)"
+  >
+    Success
+  </button>
+</div>
+<div class="container1" style="margin-top: 50px;">
+  <div *ngFor="let c of colores">
+    <div [ngStyle]="{backgroundColor: c?.ref }">
+      {{c?.ref}}
+    </div>
+    <center>
+      <button type="button" class="btn btn-danger" (click)="delete(c._id)">
+        <i class="far fa-trash-alt"></i>
+      </button>
+    </center>
+  </div>
+</div>

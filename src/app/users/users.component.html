@@ -1,0 +1,28 @@
+<!-- <div class="list-group" style="width: 70%; margin-left: 15%;">
+  <a
+    *ngFor="let user of users"
+    class="list-group-item list-group-item-action list-group-item-info"
+    ><h6>Name : {{user?.firstname}} {{user?.lastname}}</h6>
+    <h6>Email : {{user?.email}} Sex : {{user?.sex}}</h6></a
+  >
+</div> -->
+
+<table class="table" style="margin-left: 15%; width: 70%; margin-top: 5%;">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Sex</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users ;">
+      <th scope="row">a</th>
+      <td>{{user?.firstname}} {{user?.lastname}}</td>
+      <td>{{user?.email}}</td>
+      <td>{{user?.sex}}</td>
+    </tr>
+    <tr></tr>
+  </tbody>
+</table>

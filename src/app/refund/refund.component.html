@@ -1,0 +1,107 @@
+<button class="btnn" (click)="doanloadFile()">
+  <i class="fa fa-download"></i> Download Products CSV
+</button>
+
+<table class="table" style="margin-left: 15%; width: 70%; margin-top: 5%;">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Email</th>
+      <th scope="col">Reason</th>
+      <th scope="col">Message</th>
+      <th scope="col">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let refund of refunds" (click)="openMessage(refund)">
+      <th scope="row">1</th>
+      <td>{{refund?.reason}}</td>
+      <td>{{refund?.message}}</td>
+      <td>{{refund?.status}}</td>
+    </tr>
+  </tbody>
+</table>
+
+<div id="id01" class="modal">
+  <div class="modal-content animate">
+    <div class="imgcontainer">
+      <span
+        onclick="document.getElementById('id01').style.display='none'"
+        class="close"
+        title="Close Modal"
+        >&times;</span
+      >
+    </div>
+    <div class="container">
+      <div>
+        <label for="uname"><b>Total</b></label>
+        <p>
+          {{hold?.orderId.total}}
+        </p>
+      </div>
+      <div>
+        <label for="psw"><b>Email</b></label>
+        <p>{{hold?.orderId.email}}</p>
+      </div>
+      <div>
+        <label for="psw"><b>Reason</b></label>
+        <p>{{hold?.reason}}</p>
+      </div>
+      <div>
+        <label for="psw"><b>Message</b></label>
+        <p>{{hold?.message}}</p>
+      </div>
+      <div>
+        <label for="psw"><b>Adress</b></label>
+        <p>{{hold?.orderId.adress}}</p>
+      </div>
+      <div>
+        <label for="psw"><b>status</b></label>
+        <br />
+        <select #status class="form-select" aria-label="Default select example">
+          <option selected>{{hold?.status}}</option>
+          <option value="Waiting">Waiting</option>
+          <option value="Denied">Denied</option>
+          <option value="Approved">Approved</option>
+        </select>
+        <br />
+        <label for="psw"><b>Admin Answer</b></label>
+        <textarea
+          #answer
+          class="form-control"
+          id="exampleFormControlTextarea1"
+          rows="3"
+          value="{{hold?.adminAnswer}}"
+        ></textarea>
+        <br />
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="updateAnswer(status.value, answer.value)"
+        >
+          Ansewer
+        </button>
+      </div>
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Products</th>
+            <th scope="col">Product image</th>
+            <th scope="col">Product price</th>
+            <th scope="col">quantity</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let p of hold?.orderId.products">
+            <th scope="row">1</th>
+            <td>
+              <img src="{{p?.image}}" style="width: 50px; height: 50px;" />
+            </td>
+            <td>{{p?.price}}</td>
+            <td>{{p?.quantity}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

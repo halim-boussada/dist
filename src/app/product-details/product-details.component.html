@@ -1,0 +1,234 @@
+<div style="width: 70%; margin-left: 15%;">
+  <div class="container1">
+    <div>
+      <label for="exampleFormControlInput1">Product Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="exampleFormControlInput1"
+        placeholder="Beautifull Dress"
+        #name
+        value="{{product?.name}}"
+        (change)=" modify('name', name.value)"
+      />
+    </div>
+    <div>
+      <label for="exampleFormControlInput1">Code</label>
+      <input
+        type="text"
+        class="form-control"
+        id="exampleFormControlInput1"
+        placeholder="EX7P"
+        #code
+        value="{{product?.code}}"
+        (change)=" modify('code', code.value)"
+      />
+    </div>
+    <div>
+      <label for="exampleFormControlInput1">Price</label>
+      <input
+        type="number"
+        #price
+        class="form-control"
+        id="exampleFormControlInput1"
+        placeholder="77$"
+        value="{{product?.price}}"
+        (change)=" modify('price', price.value)"
+      />
+    </div>
+    <div>
+      <label for="exampleFormControlInput1">number of peaces in stock</label>
+      <input
+        type="number"
+        #numberOnStock
+        class="form-control"
+        id="exampleFormControlInput1"
+        placeholder="102"
+        value="{{product?.numberOnStock}}"
+        (change)=" modify('numberOnStock', numberOnStock.value)"
+      />
+    </div>
+  </div>
+
+  <div class="container2">
+    <div>
+      <label for="exampleFormControlInput1">Category</label>
+      <div class="form-group">
+        <select
+          class="form-control"
+          id="exampleFormControlSelect1"
+          #v
+          (change)="sub(v.value)"
+        >
+          <option value="{{product?.category}}">{{product?.category}}</option>
+          <option *ngFor="let c of categories">
+            <div>{{c?.name}}</div>
+          </option>
+        </select>
+      </div>
+    </div>
+    <div>
+      <label for="exampleFormControlInput1">Subcategory</label>
+
+      <div class="form-group">
+        <select
+          class="form-control"
+          id="exampleFormControlSelect1"
+          #subcategory
+          (change)=" modify('subcategory', subcategory.value)"
+        >
+          <option value="{{product?.subcatergory}}"
+            >{{product?.subcatergory}}</option
+          >
+
+          <option *ngFor="let a of subcategories">
+            <div>{{a}}</div>
+          </option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <label for="exampleFormControlTextarea1">Description</label>
+    <textarea
+      #description
+      class="form-control"
+      id="exampleFormControlTextarea1"
+      rows="3"
+      value="{{product?.description}}"
+    ></textarea>
+  </div>
+
+  <div class="container2">
+    <div>
+      <label for="exampleFormControlTextarea1">Sizes</label>
+
+      <div *ngFor="let e of product?.size; let i = index">
+        <div class="mb-3">
+          <select
+            #input
+            class="form-control"
+            id="exampleFormControlSelect1"
+            (change)="changeSize(input.value, i)"
+          >
+            <option value="{{e}}">{{e}}</option>
+            <option *ngFor="let s of sizes">
+              {{s?.name}}
+            </option>
+          </select>
+          <button
+            type="button"
+            class="btn btn-danger"
+            (click)="deleteSize(index)"
+          >
+            <i class="far fa-trash-alt"></i>
+          </button>
+        </div>
+      </div>
+      <button
+        type="button"
+        (click)="openSizeForm()"
+        *ngIf="!addSizeForm"
+        class="btn btn-secondary"
+      >
+        +
+      </button>
+
+      <div *ngIf="addSizeForm">
+        <select #newSize class="form-control" id="exampleFormControlSelect1">
+          <option value="">pick new size</option>
+          <option *ngFor="let s of sizes">
+            {{s?.name}}
+          </option>
+        </select>
+        <button (click)="addSize(newSize.value)" class="btn btn-success">
+          add
+        </button>
+
+        <button (click)="closeSizeForm()" class="btn btn-secondary">
+          cancel
+        </button>
+      </div>
+    </div>
+    <div>
+      <label for="exampleFormControlTextarea1">Colors</label>
+
+      <div *ngFor="let e of product?.color; let i = index">
+        <div class="mb-3">
+          <select
+            #input
+            class="form-control"
+            id="exampleFormControlSelect1"
+            (change)="changeColor(input.value, i)"
+          >
+            <option [value]="e" [ngStyle]="{backgroundColor: e }">
+              {{e}}</option
+            >
+            <option
+              *ngFor="let c of colors"
+              [value]="c?.ref"
+              [ngStyle]="{backgroundColor: c?.ref }"
+            >
+              {{c?.ref}}
+            </option>
+          </select>
+          <button
+            type="button"
+            class="btn btn-danger"
+            (click)="deleteColor(index)"
+          >
+            <i class="far fa-trash-alt"></i>
+          </button>
+        </div>
+      </div>
+      <button
+        type="button"
+        (click)="openColorForm()"
+        *ngIf="!addColorForm"
+        class="btn btn-secondary"
+      >
+        +
+      </button>
+
+      <div *ngIf="addColorForm">
+        <select #newColor class="form-control" id="exampleFormControlSelect1">
+          <option value="">pick new color</option>
+          <option
+            *ngFor="let c of colors"
+            [value]="c?.ref"
+            [ngStyle]="{backgroundColor: c?.ref }"
+          >
+            {{c?.ref}}
+          </option>
+        </select>
+        <button (click)="addColor(newColor.value)" class="btn btn-success">
+          add
+        </button>
+        <button (click)="closeColorForm()" class="btn btn-secondary">
+          cancel
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="images">
+    <div *ngFor="let e of product?.image; let i = index">
+      <div class="mb-3">
+        <img src="{{e}}" alt="" style="width: 200px; height: 300px;" />
+      </div>
+      <button type="button" class="btn btn-danger" (click)="delete(index)">
+        <i class="far fa-trash-alt"></i>
+      </button>
+    </div>
+
+    <input
+      #logo
+      type="file"
+      accept="png/jpg"
+      class="btn btn-secondary"
+      name="logo"
+      (change)="imgUpload($event)"
+    />
+  </div>
+</div>
+<button (click)="saveUpdate()" class="btn btn-success">save changes</button>

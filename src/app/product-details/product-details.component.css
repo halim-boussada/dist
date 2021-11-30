@@ -1,0 +1,24 @@
+.container1 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 1em;
+  margin-bottom: 30px;
+}
+.container2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1em;
+  margin-bottom: 30px;
+}
+.images {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 1em;
+  margin-bottom: 30px;
+}
+@media screen and (max-width: 600px) {
+  .container1,
+  .container2 {
+    grid-template-columns: 1fr;
+  }
+}
