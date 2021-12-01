@@ -21,8 +21,8 @@ export class ProductDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
       this.crud.getProductById(params.id).subscribe((data: any) => {
-        console.log(data);
         this.product = data[0];
+        console.log("dazzzzzzz", this.product);
       });
     });
     this.crud.getcategorys().subscribe((data) => {
@@ -89,7 +89,9 @@ export class ProductDetailsComponent implements OnInit {
     this.product.color[index] = newValue;
   }
   modify(key: string, newValue: any) {
+    console.log(this.product);
     this.product[key] = newValue;
+    console.log(this.product);
   }
   imgUpload(img) {
     var formData = new FormData();

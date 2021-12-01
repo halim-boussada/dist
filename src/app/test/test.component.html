@@ -1,0 +1,42 @@
+<ul id="nav1">
+  <li id="navli" *ngFor="let e of categories">
+    <a (click)="filtercategory(e)"><b>{{e}}</b></a>
+  </li>
+</ul>
+<ul id="nav">
+  <li id="navli">
+    <a (click)="dec()"><b><</b></a>
+  </li>
+  <li id="navli" *ngFor="let e of result1">
+    <a (click)="filterSubcategory(e)">{{e}}</a>
+  </li>
+  <li id="navli2" *ngFor="let e of result2">
+    <a (click)="filterSubcategory(e)">{{e}}</a>
+  </li>
+  <li id="navli">
+    <a (click)="inc()"><b>></b></a>
+  </li>
+</ul>
+
+<div class="container1">
+  <ul id="vertical">
+    <li *ngFor="let e of data">
+      <b (click)="filtercategory(e.name)"> {{e?.name}}</b>
+      <div>
+        <li
+          id="sub"
+          style="margin-left: 30px;"
+          *ngFor="let s of e.subcategory"
+          (click)=" filterSubcategory(s)"
+        >
+          {{s}}
+        </li>
+      </div>
+    </li>
+  </ul>
+  <div class="container2">
+    <div *ngFor="let p of products">
+      <img src="{{p?.image[0]}}" style="height: 300px; width: 200px;" />
+    </div>
+  </div>
+</div>

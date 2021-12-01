@@ -68,17 +68,19 @@
       </div>
     </div>
     <div>
-      <label for="exampleFormControlInput1">Subcategory</label>
+      <label for="exampleFormControlInput1"
+        >Subcategory {{product?.subcatergory }}</label
+      >
 
       <div class="form-group">
         <select
           class="form-control"
           id="exampleFormControlSelect1"
-          #subcategory
-          (change)=" modify('subcategory', subcategory.value)"
+          #subcatergory
+          (change)=" modify('subcatergory', subcatergory.value)"
         >
           <option value="{{product?.subcatergory}}"
-            >{{product?.subcatergory}}</option
+            >{{product?.subcatergory }}</option
           >
 
           <option *ngFor="let a of subcategories">

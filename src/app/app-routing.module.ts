@@ -7,10 +7,13 @@ import { ManagerComponent } from "./manager/manager.component";
 import { OrdersComponent } from "./orders/orders.component";
 import { ProductDetailsComponent } from "./product-details/product-details.component";
 import { RefundComponent } from "./refund/refund.component";
+import { TestComponent } from "./test/test.component";
 import { UsersComponent } from "./users/users.component";
 
 const routes: Routes = [
-  { path: "", component: ManagerComponent },
+  // { path: "", component: ManagerComponent },
+  { path: "", component: TestComponent },
+
   {
     path: "admin",
     component: MainComponent,

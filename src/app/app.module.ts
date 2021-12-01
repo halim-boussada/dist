@@ -18,6 +18,7 @@ import { RefundComponent } from './refund/refund.component';
 import { ManagerComponent } from './manager/manager.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { MainComponent } from './main/main.component';
+import { TestComponent } from './test/test.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { MainComponent } from './main/main.component';
     ManagerComponent,
     NavbarComponent,
     MainComponent,
+    TestComponent,
   ],
   imports: [
     BrowserModule,
